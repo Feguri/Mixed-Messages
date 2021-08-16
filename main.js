@@ -4,8 +4,10 @@ This program will generate a random message.
 // @ts-check
 class randomMessage {
     constructor() {
-        this.nouns = ['apple', 'juice', 'banana', 'fries', 'unicorn', 'potato']
-        this.adjectives = ['lucky', 'delicious', 'bad', 'explosive', 'bananas']
+        this.nouns = ['apple', 'juice', 'banana', 'fries', 'unicorn', 'potato', 'carrot', 'person', 'building', 'legos', 'Shrek'];
+        this.adjectives = ['lucky', 'delicious', 'bad', 'explosive', 'bananas', 'good', 'flattered', 'angry', 'sad', 'opressed'];
+        this.adjectivesPastTense = ['exploded', 'harmed', 'fished', 'stepped', 'puked', 'nailed', 'jumped', 'fallen'];
+        this.interminglers = ['but', 'that', 'and', 'however', 'of', 'and', 'but', 'that'];
     }
     /**
     * @param {Array} arr
@@ -27,19 +29,27 @@ class randomMessage {
     retrieveRandomItemFromList(list){
         switch(list){
             case 'nouns':
-                console.log(this.nouns.length);
                 return this.getRandomItem(this.nouns);
             case 'adjectives':
                 return this.getRandomItem(this.adjectives);
+            case 'adjPast':
+                return this.getRandomItem(this.adjectivesPastTense);
+            case 'inter':
+                return this.getRandomItem(this.interminglers);
             default:
                 return 'poop';
         }
     }
     returnRandomMessage() {
-        const phrases = [`I am ${this.retrieveRandomItemFromList('adjectives')} and this ` + 
-        `${this.retrieveRandomItemFromList('nouns')} is very ${this.retrieveRandomItemFromList('adjectives')}`];
+        const phrases = [`I am ${this.retrieveRandomItemFromList('adjectives')} ${this.retrieveRandomItemFromList('inter')} this ` + 
+        `${this.retrieveRandomItemFromList('nouns')} is very ${this.retrieveRandomItemFromList('adjectives')}.`,
+        `Have you ever ${this.retrieveRandomItemFromList('adjPast')} in someone's ${this.retrieveRandomItemFromList('nouns')}?`];
+
         return this.getRandomItem(phrases);
     }
 };
 let obj = new randomMessage();
-console.log(obj.returnRandomMessage());
+for(let i = 0; i < 15; i++){
+    console.log('\n' + obj.returnRandomMessage());
+}
+
