@@ -5,7 +5,20 @@ This program will generate a random message.
 class randomMessage {
     constructor() {
         this.nouns = ['apple', 'juice', 'banana', 'fries', 'unicorn', 'potato']
-        this.adjectives = ['lucky', 'positive', 'bad', 'explosive', 'bananas']
+        this.adjectives = ['lucky', 'delicious', 'bad', 'explosive', 'bananas']
+    }
+    /**
+    * @param {Array} arr
+    */
+    getRandomItem(arr) {
+
+        // get random index value
+        const randomIndex = Math.floor(Math.random() * arr.length);
+    
+        // get random item
+        const item = arr[randomIndex];
+    
+        return item;
     }
 
     /**
@@ -14,16 +27,18 @@ class randomMessage {
     retrieveRandomItemFromList(list){
         switch(list){
             case 'nouns':
-                return this.nouns[Math.round(Math.random() * this.nouns.length - 1)]
+                console.log(this.nouns.length);
+                return this.getRandomItem(this.nouns);
             case 'adjectives':
-                return this.adjectives[Math.round(Math.random() * this.adjectives.length)]
+                return this.getRandomItem(this.adjectives);
             default:
-                return 'poop'
+                return 'poop';
         }
     }
     returnRandomMessage() {
-        return `I am ${this.retrieveRandomItemFromList('adjectives')} and this ` + 
-        `${this.retrieveRandomItemFromList('nouns')} is very ${this.retrieveRandomItemFromList('adjectives')}`
+        const phrases = [`I am ${this.retrieveRandomItemFromList('adjectives')} and this ` + 
+        `${this.retrieveRandomItemFromList('nouns')} is very ${this.retrieveRandomItemFromList('adjectives')}`];
+        return this.getRandomItem(phrases);
     }
 };
 let obj = new randomMessage();
